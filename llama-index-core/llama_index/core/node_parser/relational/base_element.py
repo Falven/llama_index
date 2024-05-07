@@ -189,7 +189,7 @@ class BaseElementNodeParser(NodeParser):
         try:
             loop = asyncio.get_running_loop()
             summary_outputs = (
-                loop.create_task(summary_co).result()
+                asyncio.ensure_future(summary_co)
                 if loop.is_running()
                 else loop.run_until_complete(summary_co)
             )
