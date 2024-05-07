@@ -188,10 +188,11 @@ class BaseElementNodeParser(NodeParser):
         )
         try:
             loop = asyncio.get_running_loop()
-            if loop.is_running():
-                summary_outputs = loop.create_task(summary_co).result()
-            else:
-                summary_outputs = loop.run_until_complete(summary_co)
+            summary_outputs = (
+                loop.create_task(summary_co).result()
+                if loop.is_running()
+                else loop.run_until_complete(summary_co)
+            )
         except RuntimeError:
             summary_outputs = asyncio.run(summary_co)
         for element, summary_output in zip(elements, summary_outputs):
