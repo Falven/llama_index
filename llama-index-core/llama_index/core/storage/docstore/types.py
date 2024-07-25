@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional, Sequence
 
 import fsspec
 from dataclasses_json import DataClassJsonMixin
+
 from llama_index.core.schema import BaseNode
 from llama_index.core.storage.kvstore.types import DEFAULT_BATCH_SIZE
 
@@ -39,7 +40,7 @@ class BaseDocumentStore(ABC):
     @abstractmethod
     def add_documents(
         self,
-        docs: Sequence[BaseNode],
+        nodes: Sequence[BaseNode],
         allow_update: bool = True,
         batch_size: int = DEFAULT_BATCH_SIZE,
         store_text: bool = True,
@@ -49,7 +50,7 @@ class BaseDocumentStore(ABC):
     @abstractmethod
     async def async_add_documents(
         self,
-        docs: Sequence[BaseNode],
+        nodes: Sequence[BaseNode],
         allow_update: bool = True,
         batch_size: int = DEFAULT_BATCH_SIZE,
         store_text: bool = True,
@@ -146,7 +147,8 @@ class BaseDocumentStore(ABC):
     def get_nodes(
         self, node_ids: List[str], raise_error: bool = True
     ) -> List[BaseNode]:
-        """Get nodes from docstore.
+        """
+        Get nodes from docstore.
 
         Args:
             node_ids (List[str]): node ids
@@ -158,7 +160,8 @@ class BaseDocumentStore(ABC):
     async def aget_nodes(
         self, node_ids: List[str], raise_error: bool = True
     ) -> List[BaseNode]:
-        """Get nodes from docstore.
+        """
+        Get nodes from docstore.
 
         Args:
             node_ids (List[str]): node ids
@@ -171,7 +174,8 @@ class BaseDocumentStore(ABC):
         ]
 
     def get_node(self, node_id: str, raise_error: bool = True) -> BaseNode:
-        """Get node from docstore.
+        """
+        Get node from docstore.
 
         Args:
             node_id (str): node id
@@ -184,7 +188,8 @@ class BaseDocumentStore(ABC):
         return doc
 
     async def aget_node(self, node_id: str, raise_error: bool = True) -> BaseNode:
-        """Get node from docstore.
+        """
+        Get node from docstore.
 
         Args:
             node_id (str): node id
@@ -197,7 +202,8 @@ class BaseDocumentStore(ABC):
         return doc
 
     def get_node_dict(self, node_id_dict: Dict[int, str]) -> Dict[int, BaseNode]:
-        """Get node dict from docstore given a mapping of index to node ids.
+        """
+        Get node dict from docstore given a mapping of index to node ids.
 
         Args:
             node_id_dict (Dict[int, str]): mapping of index to node ids
@@ -208,7 +214,8 @@ class BaseDocumentStore(ABC):
         }
 
     async def aget_node_dict(self, node_id_dict: Dict[int, str]) -> Dict[int, BaseNode]:
-        """Get node dict from docstore given a mapping of index to node ids.
+        """
+        Get node dict from docstore given a mapping of index to node ids.
 
         Args:
             node_id_dict (Dict[int, str]): mapping of index to node ids

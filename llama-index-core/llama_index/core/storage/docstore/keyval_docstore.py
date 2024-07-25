@@ -22,7 +22,8 @@ DEFAULT_METADATA_COLLECTION_SUFFIX = "/metadata"
 
 
 class KVDocumentStore(BaseDocumentStore):
-    """Document (Node) store.
+    """
+    Document (Node) store.
 
     NOTE: at the moment, this store is primarily used to store Node objects.
     Each node will be assigned an ID.
@@ -79,7 +80,8 @@ class KVDocumentStore(BaseDocumentStore):
 
     @property
     def docs(self) -> Dict[str, BaseNode]:
-        """Get all documents.
+        """
+        Get all documents.
 
         Returns:
             Dict[str, BaseDocument]: documents
@@ -206,12 +208,13 @@ class KVDocumentStore(BaseDocumentStore):
 
     def add_documents(
         self,
-        docs: Sequence[BaseNode],
+        nodes: Sequence[BaseNode],
         allow_update: bool = True,
         batch_size: Optional[int] = None,
         store_text: bool = True,
     ) -> None:
-        """Add a document to the store.
+        """
+        Add a document to the store.
 
         Args:
             docs (List[BaseDocument]): documents
@@ -221,7 +224,7 @@ class KVDocumentStore(BaseDocumentStore):
         batch_size = batch_size or self._batch_size
 
         node_kv_pairs, metadata_kv_pairs, ref_doc_kv_pairs = self._prepare_kv_pairs(
-            docs, allow_update, store_text
+            nodes, allow_update, store_text
         )
 
         self._kvstore.put_all(
@@ -313,7 +316,8 @@ class KVDocumentStore(BaseDocumentStore):
         batch_size: Optional[int] = None,
         store_text: bool = True,
     ) -> None:
-        """Add a document to the store.
+        """
+        Add a document to the store.
 
         Args:
             docs (List[BaseDocument]): documents
@@ -347,7 +351,8 @@ class KVDocumentStore(BaseDocumentStore):
         )
 
     def get_document(self, doc_id: str, raise_error: bool = True) -> Optional[BaseNode]:
-        """Get a document from the store.
+        """
+        Get a document from the store.
 
         Args:
             doc_id (str): document id
@@ -365,7 +370,8 @@ class KVDocumentStore(BaseDocumentStore):
     async def aget_document(
         self, doc_id: str, raise_error: bool = True
     ) -> Optional[BaseNode]:
-        """Get a document from the store.
+        """
+        Get a document from the store.
 
         Args:
             doc_id (str): document id
